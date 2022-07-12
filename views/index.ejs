@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Livraria</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+
+    <h1>Listagem de pessoas</h1>
+    <p>Pessoas já cadastradas</p>
+
+    <table>
+      <thead>
+        <tr style="background-color: #CCC;">
+          <td>Nome</td>
+          <td>Idade</td>
+          <td>CPF</td>
+          <td>Ações</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% if (!registros || registros.length == 0 ) { %>
+          <tr>
+            <td colspan="4">Nenhum registro cadastrado</td>
+          </tr>
+        <% } else { 
+          registros.forEach(function(pessoa){ %>
+          <tr>
+            <td><%= pessoa.pernome %> </td>
+            <td><%= pessoa.peridade %></td>
+            <td><%= pessoa.percpf %></td>
+            <td>
+              <a href="/alterarPessoa/<%= pessoa.id %>">Alterar</a> | 
+              <a href="/apagarPessoa/<%= pessoa.id %>" onclick="return confirm('Confirma exclusão?');">Apagar</a>
+            </td>
+          </tr>
+        <% })} %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4">
+            <br>
+            <a href="/novaPessoa">Cadastrar pessoa</a>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+
+  </body>
+</html>
